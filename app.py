@@ -12,10 +12,8 @@ app = Flask(__name__)
 CORS(app)
 
 # התחברות לחשבון השירות
-creds = Credentials.from_service_account_file(
-    "credentials.json",
-    scopes=["https://www.googleapis.com/auth/spreadsheets"]
-)
+creds = Credentials.from_service_account_file("/etc/secrets/credentials.json")
+
 client = gspread.authorize(creds)
 sheet = client.open_by_key(SPREADSHEET_ID).worksheet(SHEET_NAME)
 
