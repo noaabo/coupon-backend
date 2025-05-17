@@ -20,6 +20,11 @@ creds = Credentials.from_service_account_file(
 client = gspread.authorize(creds)
 sheet = client.open_by_key(SPREADSHEET_ID).worksheet(SHEET_NAME)
 
+@app.route("/")
+def home():
+    return "🎉 Coupon API is running and ready to go!"
+
+
 @app.route("/coupons", methods=["GET"])
 def get_coupons():
     data = sheet.get_all_records()
